@@ -1,0 +1,19 @@
+model Token {
+    id Int @default(autoincrement()) @id
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    
+    token TokenType
+    emailToken String? @unique
+    valid Boolean @default(true)
+    expiration DateTime
+
+    // relation fields
+    user User @relation(fields: [userId], references: [id])
+    userId Int
+}
+
+enum TokenType {
+    EMAIL
+    API
+}
