@@ -1,0 +1,13 @@
+model Siteconfig {
+  id Int @id @unique()
+  website_title String
+  website_slogan String
+  website_description String
+  website_meta_title String
+  website_meta_description String
+  website_meta_keywords String
+  website_rekaptcha_key String
+  website_google_maps_key String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

@@ -3,9 +3,21 @@ import type { H3Event } from "h3";
 // const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event: H3Event) => {
-  const body = await readBody(event);
-  console.log(body);
-  return {};
+  // const body = await readBody(event);
+  // console.log(body);
+  const ip = getRequestIP(event);
+  const url = getRequestURL(event);
+  console.log(event.node.req);
+  return [
+    event.path,
+    event.method,
+    event.headers,
+    event.context,
+    event.handled,
+    event.headers,
+    ip,
+    url,
+  ];
   // try {
   //   const user = await prisma.user.create({
   //     data: {
