@@ -9,8 +9,11 @@ const prisma = new PrismaClient();
 // }
 
 export default defineEventHandler(async (event: H3Event) => {
-  console.log(event.path);
   if (event.path?.includes("auth")) return;
+
+  const cookie = getCookie(event, "accessToken");
+  console.log("coookie----------------------------", cookie);
+
   const headers = getHeaders(event);
   if (!headers.authorization) throw new Error("Unauthorized");
 
@@ -19,6 +22,9 @@ export default defineEventHandler(async (event: H3Event) => {
 
   try {
     const decode = verifyJwt(token) as { email: string };
+    if (!decode) {
+      throw new Error("decode error");
+    }
 
     const user = await prisma.user.findUnique({
       where: {

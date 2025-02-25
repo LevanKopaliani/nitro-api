@@ -33,6 +33,7 @@ export default defineEventHandler(async (event: H3Event) => {
     const { password: _password, ...userWidouthPassword } = user;
 
     setResponseHeader(event, "Authorization", generateJwt(user));
+    setCookie(event, "Authtoken", generateJwt(user));
 
     return {
       statusCode: 200,

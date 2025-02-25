@@ -20,14 +20,14 @@ export default defineEventHandler(async (event: H3Event) => {
       firstName: "test",
       lastName: "test",
     });
-    return test;
+    // return test;
 
-    // const user = await prisma.user.create({
-    //   data: { ...body, password: hashedPassword },
-    // });
-    // const { password: _password, ...userWidouthPassword } = user;
+    const user = await prisma.user.create({
+      data: { ...body, password: hashedPassword },
+    });
+    const { password: _password, ...userWidouthPassword } = user;
 
-    // return userWidouthPassword;
+    return userWidouthPassword;
   } catch (error) {
     throw new Error(error);
   }

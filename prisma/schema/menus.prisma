@@ -1,0 +1,9 @@
+model Menus {
+    id Int @id @default(autoincrement())
+    configs String[] @default([])
+    title String
+    menu_type String
+    pid Int @default(0)
+    slug String
+
+}
