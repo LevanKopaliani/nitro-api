@@ -11,10 +11,10 @@ const prisma = new PrismaClient();
 export default defineEventHandler(async (event: H3Event) => {
   if (event.path?.includes("auth")) return;
 
-  const cookie = getCookie(event, "accessToken");
-  console.log("coookie----------------------------", cookie);
+  // const cookie = getCookie(event, "accessToken");
 
   const headers = getHeaders(event);
+
   if (!headers.authorization) throw new Error("Unauthorized");
 
   const token = headers.authorization?.split(" ")?.[1];
@@ -26,15 +26,15 @@ export default defineEventHandler(async (event: H3Event) => {
       throw new Error("decode error");
     }
 
-    const user = await prisma.user.findUnique({
-      where: {
-        email: decode.email,
-      },
-    });
+    // const user = await prisma.user.findUnique({
+    //   where: {
+    //     email: decode.email,
+    //   },
+    // });
 
-    if (!user) {
-      throw new Error("no such user");
-    }
+    // if (!user) {
+    //   throw new Error("no such user");
+    // }
   } catch (error) {
     throw new Error(error);
   }
