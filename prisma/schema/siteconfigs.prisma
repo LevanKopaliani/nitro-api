@@ -1,5 +1,5 @@
 model Siteconfig {
-  id Int @id @unique()
+  id Int @id @default(0)
   website_title String
   website_slogan String
   website_description String
